@@ -6,7 +6,6 @@ import java.net.URL;
 
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -24,13 +23,10 @@ public class TC_001_CA_LaunchUrlBrokenTest extends BaseDriverClass {
 	@Severity(SeverityLevel.CRITICAL)
 	@Feature("General - Website links")
 	@Description("CA Locale: This test attempts to test if the lauched application url is Broken")
-	@Parameters ({"country"})
-	public void testLaunchUrlIfBroken(String cont) {
+
+	public void testLaunchUrlIfBroken() {
 		try {
 	
-			BaseDriverClass bdObj = new BaseDriverClass();
-			bdObj.setupCountry(cont);
-			
 			// Home Page Interaction
 			home = new HomePage(driver);
 			String url = home.ca_getSiteUrl();

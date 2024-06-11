@@ -25,9 +25,6 @@ public class MyAccountsPage {
 	@FindBy(css = "div[class='bby-member-container']>a")
 	WebElement link_memberBenefits;
 
-	@FindBy(xpath = "//a[normalize-space()='Return to previous page']")
-	WebElement link_previousPage;
-
 	@FindBy(id = "logout-button-bby")
 	WebElement btn_signout;
 	
@@ -52,11 +49,6 @@ public class MyAccountsPage {
 		} catch (Exception e) {
 			return (false);
 		}
-	}
-	
-	//Performing action of returning to previous page
-	public void returnToPreviousPage() {
-		link_previousPage.click();
 	}
 	
 	//Performing action of Logout

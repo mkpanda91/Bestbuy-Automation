@@ -6,7 +6,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -32,11 +31,9 @@ public class TC_003_US_CheckBottomLinksTest extends BaseDriverClass {
 	@Severity(SeverityLevel.NORMAL)
 	@Feature("General - Website links")
 	@Description("US Locale: This test attempts to test Bottom Footer links")
-	@Parameters({ "country" })
-	public void testSignUp(String cont) {
+
+	public void testSignUp() {
 		try {
-			BaseDriverClass bdObj = new BaseDriverClass();
-			bdObj.setupCountry(cont);
 			
 			// Home Page Interaction
 			home = new HomePage(driver);

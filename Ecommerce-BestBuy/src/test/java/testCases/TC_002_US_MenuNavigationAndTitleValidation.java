@@ -5,7 +5,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -28,11 +27,9 @@ public class TC_002_US_MenuNavigationAndTitleValidation extends BaseDriverClass 
 	@Severity(SeverityLevel.NORMAL)
 	@Feature("General - Website links")
 	@Description("US Locale: This test attempts to test the navigation for the left menubar options")
-	@Parameters({ "country" })
-	public void testMenuNavigationAndTitle(String cont) {
+
+	public void testMenuNavigationAndTitle() {
 		try {
-			BaseDriverClass bdObj = new BaseDriverClass();
-			bdObj.setupCountry(cont);
 			
 			// Home Page Interactions
 			home = new HomePage(driver);

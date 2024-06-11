@@ -27,6 +27,9 @@ public class LoginPage {
 
 //	@FindBy(css = ".c-button-link.cia-cancel")
 //	WebElement link_skipForNow;
+	
+	@FindBy(xpath = "//a[normalize-space()='Return to previous page']")
+	WebElement link_previousPage;
 
 	//Performing action on WebElement to fill User details for Login
 	public void setLoginEmail(String email) {
@@ -41,5 +44,11 @@ public class LoginPage {
 	public void clickLogin() {
 		btn_signIn.click();
 		// link_skipForNow.click();
+	}
+	
+
+	//Performing action of returning to previous page
+	public void returnToPreviousPage() {
+		link_previousPage.click();
 	}
 }

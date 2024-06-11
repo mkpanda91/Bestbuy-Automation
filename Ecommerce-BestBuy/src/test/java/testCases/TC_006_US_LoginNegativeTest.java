@@ -2,7 +2,6 @@ package testCases;
 
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -14,8 +13,8 @@ import pageObjects.LoginPage;
 import pageObjects.MyAccountsPage;
 import testBase.BaseDriverClass;
 
-@Listeners ({utilities.AllureTestListener.class})
-public class TC_006_US_LoginNegativeTest extends BaseDriverClass{
+@Listeners({ utilities.AllureTestListener.class })
+public class TC_006_US_LoginNegativeTest extends BaseDriverClass {
 
 	HomePage home;
 	LoginPage login;
@@ -25,13 +24,10 @@ public class TC_006_US_LoginNegativeTest extends BaseDriverClass{
 	@Severity(SeverityLevel.NORMAL)
 	@Feature("Login")
 	@Description("US Locale: This test attempts covers the negative scenario testing for login with mutiple test data combinations")
-	@Parameters({ "country" })
-	public void test_login_MultiData(String email, String password, String expData,String cont) {
+	public void test_login_MultiData(String email, String password, String expData) {
 
 		try {
-			BaseDriverClass bdObj = new BaseDriverClass();
-			bdObj.setupCountry(cont);
-			
+
 			// Home page Interactions
 			home = new HomePage(driver);
 			home.clickAccountLink();
@@ -52,7 +48,7 @@ public class TC_006_US_LoginNegativeTest extends BaseDriverClass{
 					macc.clickSignout();
 					Assert.assertTrue(true);
 				} else {
-					macc.returnToPreviousPage();
+					login.returnToPreviousPage();
 					Assert.assertTrue(false);
 				}
 			}
@@ -62,7 +58,7 @@ public class TC_006_US_LoginNegativeTest extends BaseDriverClass{
 					macc.clickSignout();
 					Assert.assertTrue(false);
 				} else {
-					macc.returnToPreviousPage();
+					login.returnToPreviousPage();
 					Assert.assertTrue(true);
 				}
 			}

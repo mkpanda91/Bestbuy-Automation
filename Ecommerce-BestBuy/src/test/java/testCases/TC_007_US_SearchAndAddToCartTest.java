@@ -2,7 +2,6 @@ package testCases;
 
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -22,11 +21,9 @@ public class TC_007_US_SearchAndAddToCartTest extends BaseDriverClass {
 	@Severity(SeverityLevel.CRITICAL)
 	@Feature("Add to Cart")
 	@Description("US Locale: This test attempts to test if user can search and add product to Cart")
-	@Parameters({ "country" })
-	public void addProductToCartBySearch(String cont) {
+
+	public void addProductToCartBySearch() {
 		try {
-			BaseDriverClass bdObj = new BaseDriverClass();
-			bdObj.setupCountry(cont);
 			
 			// Home Page Interactions
 			home = new HomePage(driver);

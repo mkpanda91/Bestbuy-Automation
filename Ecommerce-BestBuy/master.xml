@@ -1,41 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="BestBuy TestSuite">
+<suite thread-count="4" verbose="2" name="BestBuy TestSuite" preserve-order="true" parallel="none">
 
-	<listeners>
-		<listener class-name="utilities.AllureTestListener" />
-	</listeners>
+	<!-- suite name="Suite Name" -->
+	<suite-files>
+		<suite-file path="./functionality.xml" />
+		<suite-file path="./headless.xml" />
+	</suite-files>
 
-	<test thread-count="5" name="enUS-ChromeTest" verbose="2">
-		<parameter name="browser" value="chrome" />
-		<parameter name="country" value="usa" />
-		<classes>
-			<class name="testCases.TC_001_US_LaunchUrlBrokenTest" />
-			<class name="testCases.TC_002_US_MenuNavigationAndTitleValidation" />
-			<class name="testCases.TC_003_US_CheckBottomLinksTest" />
-			<class name="testCases.TC_004_US_SignUpTest" />
-			<class name="testCases.TC_005_US_LoginTest" />
-		</classes>
-	</test>
-
-	<test thread-count="5" name="enUS-EdgeTest" verbose="2">
-		<parameter name="browser" value="edge" />
-		<parameter name="country" value="usa" />
-		<classes>
-			<class name="testCases.TC_006_US_LoginNegativeTest" />
-			<class name="testCases.TC_007_US_SearchAndAddToCartTest" />
-			<class name="testCases.TC_008_US_ShopByDepartmentTest" />
-			<class name="testCases.TC_009_US_ShopByBrandAndPaymentTest" />
-		</classes>
-	</test>
-
-	<test thread-count="3" name="enUS-FirefoxTest" verbose="2">
-		<parameter name="browser" value="Firefox" />
-		<parameter name="country" value="usa" />
-		<classes>
-			<class name="testCases.TC_010_US_FilteringSearchResultsTest" />
-			<class name="testCases.TC_011_US_SaveItemTest" />
-		</classes>
-	</test>
 </suite> 

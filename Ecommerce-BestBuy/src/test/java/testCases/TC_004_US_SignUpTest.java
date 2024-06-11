@@ -2,7 +2,6 @@ package testCases;
 
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -25,11 +24,9 @@ public class TC_004_US_SignUpTest extends BaseDriverClass{
 	@Severity(SeverityLevel.CRITICAL)
 	@Feature("SignUp")
 	@Description("US Locale: This test attempts to test the SignUp functionality in application")
-	@Parameters({ "country" })
-	public void testSignUp(String cont) {
+
+	public void testSignUp() {
 		try {
-			BaseDriverClass bdObj = new BaseDriverClass();
-			bdObj.setupCountry(cont);
 			
 			// Home Page Interactions
 			home = new HomePage(driver);

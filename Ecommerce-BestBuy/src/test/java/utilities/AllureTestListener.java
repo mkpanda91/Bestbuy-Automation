@@ -10,8 +10,9 @@ import org.testng.ITestResult;
 import io.qameta.allure.Attachment;
 import testBase.BaseDriverClass;
 
-public class AllureTestListener implements ITestListener {
 
+public class AllureTestListener implements ITestListener {
+	
 	private static String getTestMethodName(ITestResult iTestResult) {
 		return iTestResult.getMethod().getConstructorOrMethod().getName();
 	}
@@ -30,7 +31,7 @@ public class AllureTestListener implements ITestListener {
 
 	@Override
 	public void onStart(ITestContext iTestContext) {
-//		iTestContext.setAttribute("WebDriver", BaseDriverClass.getDriver());
+		//iTestContext.setAttribute("WebDriver", BaseDriverClass.getDriver());
 	}
 
 	@Override

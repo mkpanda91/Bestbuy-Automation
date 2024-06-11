@@ -13,8 +13,8 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -31,9 +31,10 @@ public class BaseDriverClass {
 	EdgeOptions eoptions;
 	ChromeOptions coptions;
 
-	@BeforeClass
-	@Parameters({ "browser" })
-	public WebDriver setupBrowser(String br) {
+	@BeforeMethod
+	@Parameters({ "browser", "country" })
+
+	public WebDriver setup(String br, String cont) {
 
 		// loading properties file
 		FileReader file;
@@ -86,20 +87,15 @@ public class BaseDriverClass {
 			System.out.println("No matching browser for execution");
 			// return;
 		}
-		// generic steps for browser before test
-		tdriver.set(driver);
+		// generic steps for browser
 		driver.manage().deleteAllCookies();
 		driver.get(p.getProperty("appUrl"));
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.manage().window().maximize();
-		tdriver.set(driver);
-		return getDriver();
-	}
 
-	// To setup country as USA or Canada before respective tests
-	public void setupCountry(String setCont) {
+		// Invoking country specific UI based on parameters
 		coPage = new CountrySelectionPage(driver);
-		switch (setCont.toUpperCase()) {
+		switch (cont.toUpperCase()) {
 		case "USA":
 			coPage.chooseCountryAsUS();
 			break;
@@ -111,13 +107,15 @@ public class BaseDriverClass {
 		default:
 			System.out.println("Improper country is selected as Location");
 		}
+		tdriver.set(driver);
+		return getDriver();
 	}
 
 	public static synchronized WebDriver getDriver() {
 		return tdriver.get();
 	}
 
-	@AfterClass
+	@AfterMethod(alwaysRun = true)
 	public void tearDown() {
 		driver.close();
 	}

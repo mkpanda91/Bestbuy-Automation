@@ -2,7 +2,6 @@ package testCases;
 
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -14,47 +13,31 @@ import pageObjects.PaymentPage;
 import pageObjects.SearchPage;
 import testBase.BaseDriverClass;
 
-@Listeners ({utilities.AllureTestListener.class})
-public class TC_009_US_ShopByBrandAndPaymentTest extends BaseDriverClass {
+@Listeners({ utilities.AllureTestListener.class })
+public class TC_010_US_PaymentTest extends BaseDriverClass {
 
 	HomePage home;
 	SearchPage search;
 	PaymentPage pay;
 
 	@Test
-	@Severity(SeverityLevel.NORMAL)
-	@Feature("Add to Cart")
-	@Description("US Locale: This test attempts to test if user can Shop by Brand and add product to Cart")
-	@Parameters({ "country" })
-	public void addProductToCartByBrand(String cont) {
+	@Severity(SeverityLevel.CRITICAL)
+	@Feature("Payment")
+	@Description("US Locale: This test attempts to test if user can place order with dummy payment information")
+
+	public void addProductToCartAndPayment() {
 		try {
-			BaseDriverClass bdObj = new BaseDriverClass();
-			bdObj.setupCountry(cont);
-			
+
 			// Home Page Interactions
 			home = new HomePage(driver);
 			home.clickMenuOption();
 			home.goToBrandSearchResults();
-			
+
 			// Search Page Interactions
 			search = new SearchPage(driver);
-
-			String successOnshopByBrand = search.addToCartByBrand();
-			if (successOnshopByBrand.equals("Added to cart")) {
-				search.clickGoToCart();
-				Assert.assertTrue(true);
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-	}
-
-	@Test(dependsOnMethods = {"addProductToCartByBrand"})
-	@Severity(SeverityLevel.CRITICAL)
-	@Feature("Payment")
-	@Description("US Locale: This test attempts to test if user can place order with dummy payment information")
-	public void addProductToCartAndPayment() {
-		try {
+			search.addToCartByBrand();
+			
+			//Payment Page Interactions
 			pay = new PaymentPage(driver);
 			pay.setContactInfoForPayment(p.getProperty("email"), p.getProperty("mobileNumber"));
 			pay.setPaymentDetails(p.getProperty("cardNumber"), p.getProperty("cardExpMonth"),
